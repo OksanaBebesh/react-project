@@ -1,0 +1,40 @@
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ header {
+     min-height: 85px;
+     /*background-color: aquamarine;*/
+     background-size: cover;
+     margin: 0 auto;
+     width: 100%;
+     display: flex;
+     align-items: center;
+ }
+
+ body {
+     font-family: 'Roboto', sans-serif;
+ }
+
+.section-add-task {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #a49f9f;
+    border-radius: 3px;
+    justify-content: space-between;
+    width: 41%;
+    height: 150px;
+}
+
+ .container{
+     width:28%;
+     margin: 0 auto;
+ }
+
+ .task {
+     border: 1px solid green;
+     border-radius: 3px;
+     margin-top: 5px;
+ }
