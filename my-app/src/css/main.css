@@ -16,7 +16,6 @@
  body {
      font-family: 'Roboto', sans-serif;
  }
-
 .section-add-task {
     display: flex;
     flex-direction: column;
@@ -24,17 +23,32 @@
     border: 1px solid #a49f9f;
     border-radius: 3px;
     justify-content: space-between;
-    width: 41%;
+    width: 63%;
     height: 150px;
 }
-
  .container{
-     width:28%;
+     width:35%;
      margin: 0 auto;
  }
-
  .task {
      border: 1px solid green;
      border-radius: 3px;
      margin-top: 5px;
+ }
+ .task-row{
+    width:100%;
+ }
+ .block-edit{
+     display: flex;
+     flex-direction: column;
+ }
+ .btn-row-direction{
+     display: flex;
+     flex-direction: row;
+     justify-content: right;
+     align-items: baseline;
+ }
+ .btn-row-direction button {
+     margin-right: 25px;
+     margin-top: 15px;
  }
