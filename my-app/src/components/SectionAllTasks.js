@@ -8,9 +8,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import LocalstorageDB from '../Classes/LocalstorageDB';
-const contentData = LocalstorageDB.getLocalstorageData()
+
 
 class TaskRow extends React.Component {
+
     render() {
         const taskName = this.props.taskName;
         const dataAdd = this.props.dataAdd;
@@ -41,11 +42,12 @@ class TaskRow extends React.Component {
 }
 
 class SectionAllTasks extends React.Component{
+
     render(){
 
         let contentElements = []
-        if (contentData !== null) {
-            contentData.forEach((task) => {
+        if (props.value !== null) {
+            this.state.allTask.forEach((task) => {
                 contentElements.push(
                     <TaskRow
                         taskName={task.value}
@@ -57,10 +59,11 @@ class SectionAllTasks extends React.Component{
                 )
             })
         }
+
         return (
             <div>
                 <Box sx={{ minWidth: 275, maxWidth: 500 }}>
-                    <Card variant="outlined">{contentElements}</Card>
+                    <Card variant="outlined" >{contentElements}</Card>
                 </Box>
             </div>
         );
