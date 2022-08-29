@@ -43,7 +43,7 @@ class TaskBlock extends React.Component {
             isEdit:false,
             idEditRow:''
         })
-        this.cancelEditTask()
+        this.hideEditTask()
     }
     editTask(id){
         this.setState({
@@ -54,7 +54,7 @@ class TaskBlock extends React.Component {
     renderTaskNewBlock(){
         return(<TaskNew onClick={()=> this.addNewTask()} />)
     }
-    cancelEditTask(){
+    hideEditTask(){
         this.setState({
             isEdit: false,
             idEditRow: ''
@@ -69,7 +69,7 @@ class TaskBlock extends React.Component {
         LocalstorageDB.hasLocalStorageData() &&
         this.state.localstorageData.forEach((task) => {
 
-            content.push(<TaskRow data={task} key={task.id} id={task.id} onEdit={()=> this.confirmEdit(task.id)} onCancel={() => this.cancelEditTask()} isEdit={ task.id === this.state.idEditRow ? this.state.isEdit : null} />)
+            content.push(<TaskRow data={task} key={task.id} id={task.id} onEdit={()=> this.confirmEdit(task.id)} onCancel={() => this.hideEditTask()} isEdit={ task.id === this.state.idEditRow ? this.state.isEdit : null} />)
             content.push(<BtnRow key={this.generateUniqueKey(task.id,'Readme')} idtask={task.id} onClick={()=>this.readmeTask(task.id)} value="Readme" />)
             content.push(<BtnRow key={this.generateUniqueKey(task.id,'Remove')} idtask={task.id} onClick={()=>this.removeTask(task.id)} value="Remove" />)
             content.push(<BtnRow key={this.generateUniqueKey(task.id,'Edit')} idtask={task.id} onClick={()=> this.editTask(task.id)} value="Edit" />)
@@ -91,12 +91,12 @@ class TaskBlock extends React.Component {
     }
 
 }
-function TaskNew(props){
+const TaskNew = ({mainLabelText, taskName, mainLabelBtnValue, onClick}) => {
     return(
         <div className="section-add-task">
-            <h1>{props.mainLabelText}</h1>
-            <textarea id="new-task" placeholder="Enter new Task Name" title={props.taskName}/>
-            <Button className="btn-add" variant="contained"  size="small" onClick={props.onClick} >{props.mainLabelBtnValue}</Button>
+            <h1>{mainLabelText}</h1>
+            <textarea id="new-task" placeholder="Enter new Task Name" title={taskName}/>
+            <Button className="btn-add" variant="contained"  size="small" onClick={onClick} >{mainLabelBtnValue}</Button>
         </div>
     )
 }
@@ -106,10 +106,11 @@ TaskNew.defaultProps = {
     mainLabelBtnValue:"Add New Task"
 }
 function TaskRow(props){
-    const [taskName, setTaskName] = useState(props.data.value)
+    const {data: {value}} = props
+    const [taskName, setTaskName] = useState(value)
     const dateAdd = props.data.dateAdd
     const timeAdd = props.data.timeAdd
-    let changeValue = (inputValue) => {
+    const changeValue = (inputValue) => {
         setTaskName(inputValue)
     }
     const isEdit = props.isEdit

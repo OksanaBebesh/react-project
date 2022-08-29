@@ -16,6 +16,9 @@
  body {
      font-family: 'Roboto', sans-serif;
  }
+ body{
+     cursor: default;
+ }
 .section-add-task {
     display: flex;
     flex-direction: column;
